@@ -7,9 +7,25 @@ class MyApp(App):
 
     def build(self):
          return Builder.load_string('''
-Button
-    text: 'Hello' if self.state == 'normal' else 'World'
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+ScreenManager
+    id: sm
+    transition: FadeTransition()
+    Screen
+        name : 'sc1'
+        Button 
+            text: 'goto 2'
+            background_color: 1,0,1,1
+            on_release: sm.current = 'sc2'
+    Screen 
+        name : 'sc2'
+        Button 
+            text:  'goto 1'
+            on_release: sm.current = 'sc1'        
 ''')
+
+
+
 
 
 
